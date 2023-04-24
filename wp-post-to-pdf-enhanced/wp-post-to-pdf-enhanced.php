@@ -40,7 +40,7 @@ if ( ! defined( 'WPPTOPDFENH_VERSION_NUM' ) ) {
 if ( ! class_exists( 'wpptopdfenh' ) ) {
 	class wpptopdfenh {
 		private $options;
-		function wpptopdfenh() {
+		function __construct() {
 			$this->options = get_option( 'wpptopdfenh' );
 			if ( is_admin() ) {
 				add_action( 'admin_init', array( &$this, 'on_admin_init' ) );
