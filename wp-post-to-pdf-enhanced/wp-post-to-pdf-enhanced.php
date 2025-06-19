@@ -503,8 +503,14 @@ if ( ! class_exists( 'wpptopdfenh' ) ) {
 			}
 			// return nothing if post in exclude list
 			$include = $this->options['include'];
-			$excludeThis = explode( ',', $this->options['excludeThis'] );
-			if ( $include and ! in_array( $post->ID, $excludeThis ) ) {
+            if(isset($this->options['excludeThis'])) {
+                $excludeThis = explode(',', $this->options['excludeThis']);
+            }
+            else {
+                $excludeThis = [];
+            }
+
+            if ( $include and ! in_array( $post->ID, $excludeThis ) ) {
 				return;
 			}
 			if ( ! $include and in_array( $post->ID, $excludeThis ) ) {
