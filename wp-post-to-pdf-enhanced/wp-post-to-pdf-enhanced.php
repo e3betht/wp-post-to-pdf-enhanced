@@ -35,7 +35,7 @@ define( 'WPPTOPDFENH_URL', WP_PLUGIN_URL . '/wp-post-to-pdf-enhanced' );
 define( 'WPPTOPDFENH_BASENAME', plugin_basename( __FILE__ ) );
 define( 'WPPTOPDFENH_CACHE_DIR', WP_CONTENT_DIR . '/uploads/wp-post-to-pdf-enhanced-cache/' . $blog_id );
 if ( ! defined( 'WPPTOPDFENH_VERSION_NUM' ) ) {
-	define( 'WPPTOPDFENH_VERSION_NUM', '1.1.0' );
+	define( 'WPPTOPDFENH_VERSION_NUM', '1.1.1' );
 }
 if ( ! class_exists( 'wpptopdfenh' ) ) {
 	class wpptopdfenh {
@@ -64,10 +64,10 @@ if ( ! class_exists( 'wpptopdfenh' ) ) {
 
 			// First, we need to load $wpdb to access the database
 			global $wpdb;
-			if ( ! isset ( $this->options['pluginVer'] ) )
+			/*if ( ! isset ( $this->options['pluginVer'] ) )
 				update_option( $this->options['pluginVer'], '1.0.5' );
 			if ( version_compare( WPPTOPDFENH_VERSION_NUM, $this->options['pluginVer'], '>' ) )
-				$this->on_upgrade();
+				$this->on_upgrade();*/
 		}
 		function on_update_options( $post ) {
 			if ( isset( $post['submit'] ) and 'Save and Reset PDF Cache' == $post['submit'] ) {
@@ -295,11 +295,11 @@ if ( ! class_exists( 'wpptopdfenh' ) ) {
 			// some addtional header data which should be set in the admin UI; for testing, we're hiding the separator line (note the RGB array)
 			//$header_text_color = array( 0,0,0 );
 			//$header_line_color = array( 255,255,255 );
-			
+
 			// some addtional footer data which should be set in the admin UI; for testing, we're hiding the separator line (note the RGB array)
 			//$footer_text_color = array( 0,0,0 );
 			//$footer_line_color = array( 255,255,255 );
-			
+
 			//$pdf->SetSubject('TCPDF Tutorial');
 			//$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 			// set default header data, as appropriate for PHP 5.4 or below
@@ -631,7 +631,7 @@ if ( ! class_exists( 'wpptopdfenh' ) ) {
 			if ( !isset ( $this->options['liSymbolHeight'] ) )
 				update_option( $this->options['liSymbolHeight'], 2 );
 			// Finally, set the new version in the db
-			update_option( $this->options['pluginVer'], WPPTOPDFENH_VERSION_NUM );
+			/*update_option( $this->options['pluginVer'], WPPTOPDFENH_VERSION_NUM );*/
 		}
 		function on_pre_post_update( $id ) {
 			$post = get_post();
