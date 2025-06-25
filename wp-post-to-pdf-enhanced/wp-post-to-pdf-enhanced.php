@@ -585,6 +585,7 @@ if ( ! class_exists( 'wpptopdfenh' ) ) {
 				'liSymbolHeight'        => 2,
                 'excludeThis'           => '',
                 'excludeThisCache'      => '',
+                'liSymbolFile'          => '',
                 'pluginVer' 		=> WPPTOPDFENH_VERSION_NUM,
 			);
 			if ( ! get_option( 'wpptopdfenh' ) ) {
@@ -641,7 +642,19 @@ if ( ! class_exists( 'wpptopdfenh' ) ) {
 				update_option( $this->options['liSymbolWidth'], 3 );
 			if ( !isset ( $this->options['liSymbolHeight'] ) )
 				update_option( $this->options['liSymbolHeight'], 2 );
-			// Finally, set the new version in the db
+            if ( !isset ( $this->options['excludeThis'] ) )
+                update_option( $this->options['excludeThis'], '' );
+            if ( !isset ( $this->options['excludeThisCache'] ) )
+                update_option( $this->options['excludeThisCache'], '' );
+            if ( !isset ( $this->options['customCss'] ) )
+                update_option( $this->options['customCss'], '' );
+            if ( !isset ( $this->options['customFooterText'] ) )
+                update_option( $this->options['customFooterText'], '' );
+            if ( !isset ( $this->options['liSymbolFile'] ) )
+                update_option( $this->options['liSymbolFile'], '' );
+            if ( !isset ( $this->options['footerCellBorder'] ) )
+                update_option( $this->options['footerCellBorder'], 0 );
+            // Finally, set the new version in the db
 			/*update_option( $this->options['pluginVer'], WPPTOPDFENH_VERSION_NUM );*/
 		}
 		function on_pre_post_update( $id ) {
