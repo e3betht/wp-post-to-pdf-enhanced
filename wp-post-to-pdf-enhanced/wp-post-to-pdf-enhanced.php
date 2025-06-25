@@ -576,13 +576,16 @@ if ( ! class_exists( 'wpptopdfenh' ) ) {
 				'footerY'               => 260,
 				'footerFill'            => 0,
 				'footerPad'             => 1,
+                'footerCellBorder'      => 0,
 				'pageSize'              => 'LETTER',
 				'unitMeasure'           => 'mm',
 				'orientation'           => 'P',
 				'liSymbolType'          => 'jpg',
 				'liSymbolWidth'         => 3,
 				'liSymbolHeight'        => 2,
-				'pluginVer' 		=> WPPTOPDFENH_VERSION_NUM,
+                'excludeThis'           => '',
+                'excludeThisCache'      => '',
+                'pluginVer' 		=> WPPTOPDFENH_VERSION_NUM,
 			);
 			if ( ! get_option( 'wpptopdfenh' ) ) {
 				add_option( 'wpptopdfenh', $default );
