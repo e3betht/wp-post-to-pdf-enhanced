@@ -43,7 +43,13 @@ if ( ! class_exists( 'wpptopdfenh' ) ) {
 		function __construct() {
 			$this->options = get_option( 'wpptopdfenh' );
 			if ( is_admin() ) {
-				add_action( 'admin_init', array( &$this, 'on_admin_init' ) );
+
+                // filter updates to settings
+                if(isset($_POST) && $_POST && isset($_POST['wpptopdfenh']) && $_POST['wpptopdfenh']) {
+                    $this->filter_plugin_input();
+                }
+
+                add_action( 'admin_init', array( &$this, 'on_admin_init' ) );
 				add_action( 'admin_menu', array( &$this, 'on_admin_menu' ) );
 				add_filter( "plugin_action_links_" . WPPTOPDFENH_BASENAME, array( &$this, 'action_links' ) );
 				register_activation_hook( WPPTOPDFENH_BASENAME, array( &$this, 'on_activate' ) );
@@ -664,7 +670,40 @@ if ( ! class_exists( 'wpptopdfenh' ) ) {
 				unlink( $filePath );
 			}
 		}
-	}
+
+        /**
+         * Filters input to remove any PHP or JavaScript tags.
+         *
+         * @return void
+         */
+        function filter_plugin_input()
+        {
+            if(!isset($_POST) || !isset($_POST['wpptopdfenh']) || !$_POST['wpptopdfenh']) {
+                return;
+            }
+
+            foreach($_POST['wpptopdfenh'] as $key => $option) {
+                echo $key . ': ' . $option . '<br>';
+                if(isset($_POST['wpptopdfenh'][$key])) {
+                    $_POST['wpptopdfenh'][$key] =
+                        str_replace('?>' , '',
+                            str_replace('<?php', '',
+                                str_replace('<?', '',
+                                    str_replace('</script>', '',
+                                        str_replace('<script>', '', $option)
+                                    )
+                                )
+                            )
+                        );
+                }
+                else {
+                    $_POST['wpptopdfenh'][$key] = null;
+                }
+            }
+        }
+    }
+
+}
 	$wpptopdfenh = new wpptopdfenh();
 	/**
 	 * Display PDF download icon if applicable
