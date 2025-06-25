@@ -3,7 +3,7 @@
  * Plugin Name: WP Post to PDF Enhanced
  * Plugin URI: http://www.2rosenthals.net/wordpress/help/general-help/wp-post-to-pdf-enhanced/
  * Description: WP Post to PDF Enhanced, based on the original WP Post to PDF, renders posts & pages as downloadable PDFs for archiving and/or printing.
- * Version: 1.1.1
+ * Version: 1.1.2
  * License: GPLv2
  * Author: Lewis Rosenthal
  * Author URI: http://www.2rosenthals.net/wordpress/help/general-help/wp-post-to-pdf-enhanced/
@@ -35,7 +35,7 @@ define( 'WPPTOPDFENH_URL', WP_PLUGIN_URL . '/wp-post-to-pdf-enhanced' );
 define( 'WPPTOPDFENH_BASENAME', plugin_basename( __FILE__ ) );
 define( 'WPPTOPDFENH_CACHE_DIR', WP_CONTENT_DIR . '/uploads/wp-post-to-pdf-enhanced-cache/' . $blog_id );
 if ( ! defined( 'WPPTOPDFENH_VERSION_NUM' ) ) {
-	define( 'WPPTOPDFENH_VERSION_NUM', '1.1.1' );
+	define( 'WPPTOPDFENH_VERSION_NUM', '1.1.2' );
 }
 if ( ! class_exists( 'wpptopdfenh' ) ) {
 	class wpptopdfenh {
